@@ -28,3 +28,16 @@ class Rayon(models.Model):
     def __str__(self):
         return self.nomRayon
 
+
+class Contenir(models.Model):
+    produit = models.ForeignKey(Produit, on_delete=models.CASCADE, related_name="contenir_produit")
+    rayon = models.ForeignKey(Rayon, on_delete=models.CASCADE, related_name="contenir_rayon")
+    qte = models.PositiveBigIntegerField()
+
+    class Meta:
+        unique_together = ('produit', 'rayon')
+    
+    def __str__(self):
+        return self.qte + " produit n°" + self.produit + " dans le rayon " + self.rayon
+
+
