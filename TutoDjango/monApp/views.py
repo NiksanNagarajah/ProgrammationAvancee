@@ -61,4 +61,18 @@ def listCategries(request):
         message += "<p> rien pour l'instant. Désolé</p>"
     return HttpResponse(message)
 
+def listStatuts(request):
+    stats = Statut.objects.all()
+    message =   """
+                    <h1>Bienvenue dans notre magasin !!</h1>
+                    <p>Voici les statuts des produits que nous proposons : </p>
+                """
+    if len(stats) != 0:
+        message += "<ul>"
+        for i in range(len(stats)):
+            message += f"<li>{stats[i].libelleStat}</li>"
+        message += "</ul>"
+    else:
+        message += "<p> rien pour l'instant. Désolé</p>"
+    return HttpResponse(message)
 
