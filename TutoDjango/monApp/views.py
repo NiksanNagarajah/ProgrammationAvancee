@@ -46,3 +46,19 @@ def listProduits(request):
         message += "<p> rien pour l'instant. Désolé</p>"
     return HttpResponse(message)
 
+def listCategries(request):
+    cats = Categorie.objects.all()
+    message =   """
+                    <h1>Bienvenue dans notre magasin !!</h1>
+                    <p>Voici les catégories de produits que nous proposons : </p>
+                """
+    if len(cats) != 0:
+        message += "<ul>"
+        for i in range(len(cats)):
+            message += f"<li>{cats[i].nomCat}</li>"
+        message += "</ul>"
+    else:
+        message += "<p> rien pour l'instant. Désolé</p>"
+    return HttpResponse(message)
+
+
