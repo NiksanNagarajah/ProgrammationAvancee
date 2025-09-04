@@ -43,3 +43,11 @@ class Contenir(models.Model):
         return self.qte + " produit n°" + self.produit + " dans le rayon " + self.rayon
 
 
+class Statut(models.Model):
+    idStat = models.AutoField(primary_key=True)
+    libelleStat = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.libelleStat
+
+
