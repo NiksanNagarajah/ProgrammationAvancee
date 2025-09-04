@@ -26,4 +26,6 @@ urlpatterns = [
     path("listProduits/", views.listProduits, name="listProduits"),
     path("listCategries/", views.listCategries, name="listCategries"),
     path("listStatuts/", views.listStatuts, name="listStatuts"),
+    path("listRayons/", views.listRayons, name="listRayons"),
+
 ]

@@ -76,3 +76,17 @@ def listStatuts(request):
         message += "<p> rien pour l'instant. Désolé</p>"
     return HttpResponse(message)
 
+def listRayons(request):
+    rayons = Rayon.objects.all()
+    message =   """
+                    <h1>Bienvenue dans notre magasin !!</h1>
+                    <p>Voici les rayons que vous pouvez trouver dans notre magasins : </p>
+                """
+    if len(rayons) != 0:
+        message += "<ul>"
+        for i in range(len(rayons)):
+            message += f"<li>{rayons[i].nomRayon}</li>"
+        message += "</ul>"
+    else:
+        message += "<p> rien pour l'instant. Désolé</p>"
+    return HttpResponse(message)
