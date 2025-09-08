@@ -70,7 +70,7 @@ def listStatuts(request):
     if len(stats) != 0:
         message += "<ul>"
         for i in range(len(stats)):
-            message += f"<li>{stats[i].libelleStat}</li>"
+            message += f"<li>{stats[i].libelleStatus}</li>"
         message += "</ul>"
     else:
         message += "<p> rien pour l'instant. Désolé</p>"
