@@ -1,19 +1,22 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from .models import *
 
 # Create your views here.
 
 def home(request, param=None):
-    if param:
-        return HttpResponse(
-            f"""
-            <h1>Hello Django!</h1>
-            <p>Bonjour, {param}</p>
-            """
-        )
-    else:
-        return HttpResponse("<h1>Hello Django!</h1>")
+    if request.GET and request.GET["test"]:
+        raise Http404
+    return HttpResponse("Bonjour Monde!")
+    # if param:
+    #     return HttpResponse(
+    #         f"""
+    #         <h1>Hello Django!</h1>
+    #         <p>Bonjour, {param}</p>
+    #         """
+    #     )
+    # else:
+    #     return HttpResponse("<h1>Hello Django!</h1>")
 
 def contact(request):
     return HttpResponse(
@@ -33,18 +36,18 @@ def about(request):
 
 def listProduits(request):
     prdts = Produit.objects.all()
-    message =   """
-                    <h1>Bienvenue dans notre magasin !!</h1>
-                    <p>Voici la liste de produits que nous proposons : </p>
-                """
-    if len(prdts) != 0:
-        message += "<ul>"
-        for i in range(len(prdts)):
-            message += f"<li>{prdts[i].intituleProd} {prdts[i].prixUnitaireProd}€</li>"
-        message += "</ul>"
-    else:
-        message += "<p> rien pour l'instant. Désolé</p>"
-    return HttpResponse(message)
+    return render(request, 'monApp/list_produits.html',{'prdts': prdts})    # message =   """
+    #                 <h1>Bienvenue dans notre magasin !!</h1>
+    #                 <p>Voici la liste de produits que nous proposons : </p>
+    #             """
+    # if len(prdts) != 0:
+    #     message += "<ul>"
+    #     for i in range(len(prdts)):
+    #         message += f"<li>{prdts[i].intituleProd} {prdts[i].prixUnitaireProd}€</li>"
+    #     message += "</ul>"
+    # else:
+    #     message += "<p> rien pour l'instant. Désolé</p>"
+    # return HttpResponse(message)
 
 def listCategries(request):
     cats = Categorie.objects.all()
