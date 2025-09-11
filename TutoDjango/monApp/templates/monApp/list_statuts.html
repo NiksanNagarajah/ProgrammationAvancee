@@ -2,16 +2,27 @@
 
 {% block title %}Mes Statuts{% endblock %}
 
+{% block menu %}
+    <h1>Liste des statuts</h1>
+{% endblock %}
+
 {% block contenu %}
     <h1>Hello mes statuts !</h1>
     <p>Mes status de produits sont :</p>
-    <ul>
-        {% for stat in stats %}
-        <li>
-            {{ stat.libelleStatus}}
-        </li>
-        {% endfor %}
-    </ul>
+    <table class="table">
+        <thead>
+            <th>Id</th>
+            <th>Nom statut</th>
+        </thead>
+        <tbody>
+            {% for stat in stats %}
+            <tr>
+                <td>{{ stat.idStatus }} </td>
+                <td>{{ stat.libelleStatus }} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
     <p>
         J'ai
         {% if stats|length < 5 %} 
