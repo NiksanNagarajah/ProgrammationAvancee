@@ -1,13 +1,10 @@
-<html>
+{% extends 'monApp/base.html' %}
 
-<head>
-    <title>Mon app DJANGO | Mes produits</title>
-</head>
+{% block title %}Mes Produits{% endblock %}
 
-<body>
+{% block contenu %}
     <h1>Hello mes produits !</h1>
     <p>Mes produits sont :</p>
-    <!-- TODO : liste des produits -->
     <ul>
         {% for prdt in prdts %}
         <li>
@@ -26,6 +23,6 @@
         {% endif %}
             produits préférés. 
     </p>
-</body>
+{% endblock %}
 
-</html>
+

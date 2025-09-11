@@ -1,13 +1,10 @@
-<html>
+{% extends 'monApp/base.html' %}
 
-<head>
-    <title>Mon app DJANGO | Mes rayons</title>
-</head>
+{% block title %}Mes Rayons{% endblock %}
 
-<body>
+{% block contenu %}
     <h1>Hello mes rayons !</h1>
     <p>Mes rayons sont :</p>
-    <!-- TODO : liste des rayons -->
     <ul>
         {% for ray in rayons %}
         <li>
@@ -26,6 +23,6 @@
         {% endif %}
             rayons. 
     </p>
-</body>
+{% endblock %}
 
-</html>
+

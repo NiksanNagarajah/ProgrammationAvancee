@@ -1,13 +1,10 @@
-<html>
+{% extends 'monApp/base.html' %}
 
-<head>
-    <title>Mon app DJANGO | Mes Statuts</title>
-</head>
+{% block title %}Mes Statuts{% endblock %}
 
-<body>
+{% block contenu %}
     <h1>Hello mes statuts !</h1>
     <p>Mes status de produits sont :</p>
-    <!-- TODO : liste des produistatusts -->
     <ul>
         {% for stat in stats %}
         <li>
@@ -26,6 +23,6 @@
         {% endif %}
             statut. 
     </p>
-</body>
+{% endblock %}
 
-</html>
+

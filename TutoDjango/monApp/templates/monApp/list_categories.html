@@ -1,13 +1,10 @@
-<html>
+{% extends 'monApp/base.html' %}
 
-<head>
-    <title>Mon app DJANGO | Mes catégories</title>
-</head>
+{% block title %}Mes Catégories{% endblock %}
 
-<body>
+{% block contenu %}
     <h1>Hello mes catégories !</h1>
     <p>Mes catégories de produits sont :</p>
-    <!-- TODO : liste des catégories -->
     <ul>
         {% for cat in cats %}
         <li>
@@ -26,6 +23,6 @@
         {% endif %}
             catégories. 
     </p>
-</body>
+{% endblock %}
 
-</html>
+
