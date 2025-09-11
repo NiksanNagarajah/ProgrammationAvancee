@@ -19,35 +19,14 @@ def home(request, param=None):
     #     return HttpResponse("<h1>Hello Django!</h1>")
 
 def contact(request):
-    return HttpResponse(
-        """
-        <h1>Page Contact</h1>
-        <p>Ceci est une page de contact !!</p>
-        """
-    )
+    return render(request, 'monApp/contact.html')
 
 def about(request):
-    return HttpResponse(
-        """
-        <h1>Page A propos</h1>
-        <p>Ceci est une page A propos !!</p>
-        """
-    )
+    return render(request, 'monApp/about.html')
 
 def listProduits(request):
     prdts = Produit.objects.all()
-    return render(request, 'monApp/list_produits.html',{'prdts': prdts})    # message =   """
-    #                 <h1>Bienvenue dans notre magasin !!</h1>
-    #                 <p>Voici la liste de produits que nous proposons : </p>
-    #             """
-    # if len(prdts) != 0:
-    #     message += "<ul>"
-    #     for i in range(len(prdts)):
-    #         message += f"<li>{prdts[i].intituleProd} {prdts[i].prixUnitaireProd}€</li>"
-    #     message += "</ul>"
-    # else:
-    #     message += "<p> rien pour l'instant. Désolé</p>"
-    # return HttpResponse(message)
+    return render(request, 'monApp/list_produits.html',{'prdts': prdts})
 
 def listCategries(request):
     cats = Categorie.objects.all()
