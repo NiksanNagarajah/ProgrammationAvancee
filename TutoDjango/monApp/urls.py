@@ -18,11 +18,11 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.home, name="home"),
-    path("home/", views.home, name="home"),
-    path("home/<param>", views.home, name="home"),
+    path("", views.HomeView.as_view(), name="home"),
+    path("home/",  views.HomeView.as_view(), name="home"),
+    path("home/<param>",  views.HomeView.as_view(), name="home"),
     path("contact/", views.contact, name="contact"),
-    path("about/", views.about, name="about"),
+    path("about/", views.AboutView.as_view(), name="about"),
     path("listProduits/", views.listProduits, name="listProduits"),
     path("listCategries/", views.listCategries, name="listCategries"),
     path("listStatuts/", views.listStatuts, name="listStatuts"),

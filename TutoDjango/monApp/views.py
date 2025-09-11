@@ -1,22 +1,33 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from .models import *
+from django.views.generic import *
 
 # Create your views here.
 
-def home(request, param=None):
-    if request.GET and request.GET["test"]:
-        raise Http404
-    return HttpResponse("Bonjour Monde!")
-    # if param:
-    #     return HttpResponse(
-    #         f"""
-    #         <h1>Hello Django!</h1>
-    #         <p>Bonjour, {param}</p>
-    #         """
-    #     )
-    # else:
-    #     return HttpResponse("<h1>Hello Django!</h1>")
+class HomeView(TemplateView):
+    template_name = "monApp/home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['titreh1'] = "Hello DJANGO"
+        return context
+
+    def post(self, request, **kwargs):
+        return render(request, self.template_name)
+    
+class AboutView(TemplateView):
+    template_name = "monApp/home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(AboutView, self).get_context_data(**kwargs)
+        print(context)
+        context['titreh1'] = "About us..."
+        print(context)
+        return context
+    
+    def post(self, request, **kwargs):
+        return render(request, self.template_name)
 
 def contact(request):
     return render(request, 'monApp/contact.html')
