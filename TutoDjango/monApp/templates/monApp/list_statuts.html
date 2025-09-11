@@ -1,0 +1,31 @@
+<html>
+
+<head>
+    <title>Mon app DJANGO | Mes Statuts</title>
+</head>
+
+<body>
+    <h1>Hello mes statuts !</h1>
+    <p>Mes status de produits sont :</p>
+    <!-- TODO : liste des produistatusts -->
+    <ul>
+        {% for stat in stats %}
+        <li>
+            {{ stat.libelleStatus}}
+        </li>
+        {% endfor %}
+    </ul>
+    <p>
+        J'ai
+        {% if stats|length < 5 %} 
+            peu de 
+        {% elif stats|length < 10 %} 
+            quelques 
+        {% else %} 
+            beaucoup de 
+        {% endif %}
+            statut. 
+    </p>
+</body>
+
+</html>

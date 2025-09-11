@@ -30,45 +30,13 @@ def listProduits(request):
 
 def listCategries(request):
     cats = Categorie.objects.all()
-    message =   """
-                    <h1>Bienvenue dans notre magasin !!</h1>
-                    <p>Voici les catégories de produits que nous proposons : </p>
-                """
-    if len(cats) != 0:
-        message += "<ul>"
-        for i in range(len(cats)):
-            message += f"<li>{cats[i].nomCat}</li>"
-        message += "</ul>"
-    else:
-        message += "<p> rien pour l'instant. Désolé</p>"
-    return HttpResponse(message)
+    return render(request, 'monApp/list_categories.html',{'cats': cats})
 
 def listStatuts(request):
     stats = Statut.objects.all()
-    message =   """
-                    <h1>Bienvenue dans notre magasin !!</h1>
-                    <p>Voici les statuts des produits que nous proposons : </p>
-                """
-    if len(stats) != 0:
-        message += "<ul>"
-        for i in range(len(stats)):
-            message += f"<li>{stats[i].libelleStatus}</li>"
-        message += "</ul>"
-    else:
-        message += "<p> rien pour l'instant. Désolé</p>"
-    return HttpResponse(message)
+    return render(request, 'monApp/list_statuts.html',{'stats': stats})
 
 def listRayons(request):
     rayons = Rayon.objects.all()
-    message =   """
-                    <h1>Bienvenue dans notre magasin !!</h1>
-                    <p>Voici les rayons que vous pouvez trouver dans notre magasins : </p>
-                """
-    if len(rayons) != 0:
-        message += "<ul>"
-        for i in range(len(rayons)):
-            message += f"<li>{rayons[i].nomRayon}</li>"
-        message += "</ul>"
-    else:
-        message += "<p> rien pour l'instant. Désolé</p>"
-    return HttpResponse(message)
+    return render(request, 'monApp/list_rayons.html',{'rayons': rayons})
+
