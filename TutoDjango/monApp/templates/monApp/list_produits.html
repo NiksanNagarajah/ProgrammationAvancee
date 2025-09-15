@@ -3,7 +3,7 @@
 {% block title %}Mes Produits{% endblock %}
 
 {% block menu %}
-    <h1>Liste des produits</h1>
+    <h1>{{ titremenu }}</h1>
 {% endblock %}
 
 {% block contenu %}
@@ -21,12 +21,12 @@
         <tbody>
             {% for prdt in prdts %}
             <tr>
-                <td>{{ prdt.refProd }} </td>
-                <td>{{ prdt.intituleProd }} </td>
-                <td>{{ prdt.prixUnitaireProd }} </td>
-                <td>{{ prdt.dateFabProd }} </td>
-                <td>{{ prdt.categorie }} </td>
-                <td>{{ prdt.status }} </td>
+                <td><a href="{% url 'dtl_prdt' prdt.refProd %}">{{ prdt.refProd }}</a></td>
+                <td>{{ prdt.intituleProd | upper }}</td>
+                <td>{{ prdt.prixUnitaireProd }}</td>
+                <td>{{ prdt.dateFabProd }}</td>
+                <td>{{ prdt.categorie }}</td>
+                <td>{{ prdt.status }}</td>
             </tr>
             {% endfor %}
         </tbody>

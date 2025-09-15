@@ -1,0 +1,23 @@
+{% extends 'monApp/base.html' %}
+
+{% block title %}Mon Produit{% endblock %}
+
+{% block menu %}
+    <h1>{{ titremenu }}</h1>
+{% endblock %}
+
+{% block contenu %}
+    <a href="{% url 'lst_prdts' %}">Retour à la liste des produits</a>
+
+    <h2>{{ prdt.intituleProd | upper }}</h2>
+    
+    <ul>
+        <li>Référence produit : {{prdt.refProd }} </li>
+        <li>Prix unitaire HT : {{ prdt.prixUnitaireProd }} </li>
+        <li>Date de fabrication : {{ prdt.dateFabProd }} </li>
+        <li>Catégorie : {{ prdt.categorie }} </li>
+        <li>Statut : {{ prdt.status }}</li>
+    </ul>
+{% endblock %}
+
+

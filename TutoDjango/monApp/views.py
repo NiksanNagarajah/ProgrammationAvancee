@@ -44,16 +44,26 @@ class ContactView(TemplateView):
     def post(self, request, **kwargs):
         return render(request, self.template_name)
 
-def contact(request):
-    return render(request, 'monApp/contact.html')
+class ProduitListView(ListView):
+    model = Produit
+    template_name = "monApp/list_produits.html"
+    context_object_name = "prdts"
 
-def about(request):
-    return render(request, 'monApp/about.html')
+    def get_context_data(self, **kwargs):
+        context = super(ProduitListView, self).get_context_data(**kwargs)
+        context['titremenu'] = "Liste de mes produits"
+        return context
 
-def listProduits(request):
-    prdts = Produit.objects.all()
-    return render(request, 'monApp/list_produits.html',{'prdts': prdts})
-
+class ProduitDetailView(DetailView):
+    model = Produit
+    template_name = "monApp/detail_produit.html"
+    context_object_name = "prdt"
+    
+    def get_context_data(self, **kwargs):
+        context = super(ProduitDetailView, self).get_context_data(**kwargs)
+        context['titremenu'] = "Détail du produit"
+        return context
+    
 def listCategries(request):
     cats = Categorie.objects.all()
     return render(request, 'monApp/list_categories.html',{'cats': cats})

@@ -23,8 +23,9 @@ urlpatterns = [
     path("home/<param>",  views.HomeView.as_view(), name="home"),
     path("contact/", views.ContactView.as_view(), name="contact"),
     path("about/", views.AboutView.as_view(), name="about"),
-    path("listProduits/", views.listProduits, name="listProduits"),
-    path("listCategries/", views.listCategries, name="listCategries"),
-    path("listStatuts/", views.listStatuts, name="listStatuts"),
-    path("listRayons/", views.listRayons, name="listRayons"),
+    path("produits/", views.ProduitListView.as_view(), name="lst_prdts"),
+    path("produit/<pk>/",views.ProduitDetailView.as_view(), name="dtl_prdt"),
+    path("categories/", views.listCategries, name="lst_cats"),
+    path("statuts/", views.listStatuts, name="lst_stats"),
+    path("rayons/", views.listRayons, name="lst_rayons"),
 ]
