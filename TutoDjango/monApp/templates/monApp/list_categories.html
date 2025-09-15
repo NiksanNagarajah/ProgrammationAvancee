@@ -3,7 +3,7 @@
 {% block title %}Mes Catégories{% endblock %}
 
 {% block menu %}
-    <h1>Liste des catégories</h1>
+    <h1>{{ titremenu }}</h1>
 {% endblock %}
 
 {% block contenu %}
@@ -17,8 +17,8 @@
         <tbody>
             {% for cat in cats %}
             <tr>
-                <td>{{ cat.idCat }} </td>
-                <td>{{ cat.nomCat }} </td>
+                <td><a href="{% url 'dtl_cat' cat.idCat %}">{{ cat.idCat }}</a></td>
+                <td>{{ cat.nomCat }}</td>
             </tr>
             {% endfor %}
         </tbody>

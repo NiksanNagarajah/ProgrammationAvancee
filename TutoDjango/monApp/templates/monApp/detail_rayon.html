@@ -1,0 +1,19 @@
+{% extends 'monApp/base.html' %}
+
+{% block title %}Mon Rayon{% endblock %}
+
+{% block menu %}
+    <h1>{{ titremenu }}</h1>
+{% endblock %}
+
+{% block contenu %}
+    <a href="{% url 'lst_cats' %}">Retour à la liste des rayons</a>
+
+    <h2>{{ ray.nomRayon }}</h2>
+    
+    <ul>
+        <li>Référence rayon : {{ ray.idRayon }} </li>
+    </ul>
+{% endblock %}
+
+

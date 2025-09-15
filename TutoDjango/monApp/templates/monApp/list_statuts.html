@@ -3,7 +3,7 @@
 {% block title %}Mes Statuts{% endblock %}
 
 {% block menu %}
-    <h1>Liste des statuts</h1>
+    <h1>{{ titremenu }}</h1>
 {% endblock %}
 
 {% block contenu %}
@@ -17,7 +17,7 @@
         <tbody>
             {% for stat in stats %}
             <tr>
-                <td>{{ stat.idStatus }} </td>
+                <td><a href="{% url 'dtl_stat' stat.idStatus %}">{{ stat.idStatus }}</a></td>
                 <td>{{ stat.libelleStatus }} </td>
             </tr>
             {% endfor %}

@@ -3,7 +3,7 @@
 {% block title %}Mes Rayons{% endblock %}
 
 {% block menu %}
-    <h1>Liste des rayons</h1>
+    <h1>{{ titremenu }}</h1>
 {% endblock %}
 
 {% block contenu %}
@@ -17,8 +17,8 @@
         <tbody>
             {% for ray in rayons %}
             <tr>
-                <td>{{ ray.idRayon }} </td>
-                <td>{{ ray.nomRayon }} </td>
+                <td><a href="{% url 'dtl_rayon' ray.idRayon %}">{{ ray.idRayon }}</a></td>
+                <td>{{ ray.nomRayon }}</td>
             </tr>
             {% endfor %}
         </tbody>

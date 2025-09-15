@@ -25,7 +25,10 @@ urlpatterns = [
     path("about/", views.AboutView.as_view(), name="about"),
     path("produits/", views.ProduitListView.as_view(), name="lst_prdts"),
     path("produit/<pk>/",views.ProduitDetailView.as_view(), name="dtl_prdt"),
-    path("categories/", views.listCategries, name="lst_cats"),
-    path("statuts/", views.listStatuts, name="lst_stats"),
-    path("rayons/", views.listRayons, name="lst_rayons"),
+    path("categories/", views.CategorieListView.as_view(), name="lst_cats"),
+    path("categorie/<pk>", views.CategorieDetailView.as_view(), name="dtl_cat"),
+    path("statuts/", views.StatutListView.as_view(), name="lst_stats"),
+    path("statut/<pk>", views.StatutDetailView.as_view(), name="dtl_stat"),
+    path("rayons/", views.RayonListView.as_view(), name="lst_rayons"),
+    path("rayon/<pk>", views.RayonDetailView.as_view(), name="dtl_rayon"),
 ]
