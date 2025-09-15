@@ -11,6 +11,8 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['titreh1'] = "Hello DJANGO"
+        context['title'] = "Accueil"
+        context['message'] = "Bienvenue sur la page d'accueil de notre site !"
         return context
 
     def post(self, request, **kwargs):
@@ -21,9 +23,22 @@ class AboutView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(AboutView, self).get_context_data(**kwargs)
-        print(context)
         context['titreh1'] = "About us..."
-        print(context)
+        context['title'] = "About"
+        context['message'] = "Bienvenue sur la page À propos de notre site !"
+        return context
+    
+    def post(self, request, **kwargs):
+        return render(request, self.template_name)
+
+class ContactView(TemplateView):
+    template_name = "monApp/home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(ContactView, self).get_context_data(**kwargs)
+        context['titreh1'] = "Contact us..."
+        context['title'] = "Contact"
+        context['message'] = "Bienvenue sur la page Contact de notre site !"
         return context
     
     def post(self, request, **kwargs):
