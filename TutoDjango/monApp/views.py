@@ -1,16 +1,19 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from .models import *
+from .forms import *
 from django.views.generic import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.views import *
 from django.shortcuts import redirect
+from django.core.mail import send_mail
+
 
 # Create your views here.
 
 class HomeView(TemplateView):
-    template_name = "monApp/home.html"
+    template_name = "monApp/page_home.html"
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
@@ -26,7 +29,7 @@ class HomeView(TemplateView):
         return render(request, self.template_name)
     
 class AboutView(TemplateView):
-    template_name = "monApp/home.html"
+    template_name = "monApp/page_home.html"
 
     def get_context_data(self, **kwargs):
         context = super(AboutView, self).get_context_data(**kwargs)
@@ -38,18 +41,26 @@ class AboutView(TemplateView):
     def post(self, request, **kwargs):
         return render(request, self.template_name)
 
-class ContactView(TemplateView):
-    template_name = "monApp/home.html"
+def ContactView(request):
+    titreh1 = "Contact us !"
+    if request.method=='POST':
+        form = ContactUsForm(request.POST)
+        if form.is_valid():
+            send_mail(
+            subject=f'Message from {form.cleaned_data["name"] or "anonyme"} via TutoDjango Contact form',
+            message=form.cleaned_data['message'],
+            from_email=form.cleaned_data['email'],
+            recipient_list=['admin@monApp.com'],
+            )
+            return redirect('email-sent')
+    else:
+        form = ContactUsForm()
+    print('La méthode de requête est : ', request.method)
+    print('Les données POST sont : ', request.POST)
+    return render(request, "monApp/page_home.html",{'titreh1':titreh1, 'form':form, 'title':titreh1})
 
-    def get_context_data(self, **kwargs):
-        context = super(ContactView, self).get_context_data(**kwargs)
-        context['titreh1'] = "Contact us..."
-        context['title'] = "Contact"
-        context['message'] = "Bienvenue sur la page Contact de notre site !"
-        return context
-    
-    def post(self, request, **kwargs):
-        return render(request, self.template_name)
+def ConfirmationView(request):
+    return render(request, "monApp/page_confirmation.html")
 
 class ProduitListView(ListView):
     model = Produit
