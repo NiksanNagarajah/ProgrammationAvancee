@@ -2,6 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from .models import *
 from django.views.generic import *
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.contrib.auth.views import *
+from django.shortcuts import redirect
 
 # Create your views here.
 
@@ -10,6 +14,9 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            print(self.request.user)
+            context['param'] = self.request.user
         context['titreh1'] = "Hello DJANGO"
         context['title'] = "Accueil"
         context['message'] = "Bienvenue sur la page d'accueil de notre site !"
@@ -123,5 +130,41 @@ class RayonDetailView(DetailView):
         context = super(RayonDetailView, self).get_context_data(**kwargs)
         context['titremenu'] = "Détail du rayon"
         return context
+
+class ConnectView(LoginView):
+    template_name = 'monApp/page_login.html'
+
+    def post(self, request, **kwargs):
+        lgn = request.POST.get('username', False)
+        pswrd = request.POST.get('password', False)
+        user = authenticate(username=lgn, password=pswrd)
+        if user is not None and user.is_active:
+            login(request, user)
+            return redirect('home') 
+        else:
+            return render(request, 'monApp/page_register.html')
+
+class RegisterView(TemplateView):
+    template_name = 'monApp/page_register.html'
+
+    def post(self, request, **kwargs):
+        username = request.POST.get('username', False)
+        mail = request.POST.get('mail', False)
+        password = request.POST.get('password', False)
+        user = User.objects.create_user(username, mail, password)
+        user.save()
+        if user is not None and user.is_active:
+            return render(request, 'monApp/page_login.html')
+        else:
+            return render(request, 'monApp/page_register.html')
+        
+class DisconnectView(TemplateView):
+    template_name = 'monApp/page_logout.html'
+
+    def get(self, request, **kwargs):
+        logout(request)
+        return render(request, self.template_name)
+
+
 
 
