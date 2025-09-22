@@ -184,6 +184,13 @@ class ProduitCreateView(CreateView):
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         prdt = form.save()
-        return redirect('dtl-prdt', prdt.refProd)
+        return redirect('dtl_prdt', prdt.refProd)
 
-
+class ProduitUpdateView(UpdateView):
+    model = Produit
+    form_class=ProduitForm
+    template_name = "monApp/update_produit.html"
+    
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        prdt = form.save()
+        return redirect('dtl_prdt', prdt.refProd)
