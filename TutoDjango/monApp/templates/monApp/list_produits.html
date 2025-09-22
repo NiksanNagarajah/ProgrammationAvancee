@@ -17,7 +17,7 @@
             <th>Date fabrication</th>
             <th>Catégorie</th>
             <th>Statut</th>
-            <th>Action</th>
+            <th colspan="2" style="text-align: center;">Action</th>
         </thead>
         <tbody>
             {% for prdt in prdts %}
@@ -29,6 +29,7 @@
                 <td>{{ prdt.categorie }}</td>
                 <td>{{ prdt.status }}</td>
                 <td><a href="{% url 'prdt-chng' prdt.refProd %}">Modifier</a></td>
+                <td><a href="{% url 'dlt-prdt' prdt.refProd %}">Supprimer</a></td>
             </tr>
             {% endfor %}
         </tbody>

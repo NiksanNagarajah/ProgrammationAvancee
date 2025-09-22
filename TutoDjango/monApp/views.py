@@ -9,6 +9,7 @@ from django.contrib.auth.views import *
 from django.shortcuts import redirect
 from django.core.mail import send_mail
 from django.forms.models import BaseModelForm
+from django.urls import reverse_lazy 
 
 
 # Create your views here.
@@ -194,3 +195,11 @@ class ProduitUpdateView(UpdateView):
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         prdt = form.save()
         return redirect('dtl_prdt', prdt.refProd)
+
+
+class ProduitDeleteView(DeleteView):
+    model = Produit
+    template_name = "monApp/delete_produit.html"
+    success_url = reverse_lazy('lst_prdts')
+
+
