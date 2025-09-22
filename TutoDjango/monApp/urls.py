@@ -35,4 +35,5 @@ urlpatterns = [
     path('login/', views.ConnectView.as_view(), name='login'),
     path('register/', views.RegisterView.as_view(), name='register'),
     path('logout/', views.DisconnectView.as_view(), name='logout'),
+    path("produit/",views.ProduitCreateView.as_view(), name="crt-prdt"),
 ]

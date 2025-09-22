@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import *
 from django.shortcuts import redirect
 from django.core.mail import send_mail
+from django.forms.models import BaseModelForm
 
 
 # Create your views here.
@@ -176,6 +177,13 @@ class DisconnectView(TemplateView):
         logout(request)
         return render(request, self.template_name)
 
+class ProduitCreateView(CreateView):
+    model = Produit
+    form_class=ProduitForm
+    template_name = "monApp/create_produit.html"
 
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        prdt = form.save()
+        return redirect('dtl-prdt', prdt.refProd)
 
 

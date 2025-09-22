@@ -31,6 +31,9 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <h1>Pour créer un nouveau produit cliquer <a href="{% url 'crt-prdt' %}">ici</a>.</h1>
+
     <p>
         J'ai
         {% if prdts|length < 5 %} 
