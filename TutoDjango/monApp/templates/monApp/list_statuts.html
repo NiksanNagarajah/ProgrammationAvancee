@@ -23,6 +23,9 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <h1>Pour créer un nouveau statut cliquer <a href="{% url 'crt-stat' %}">ici</a>.</h1>
+
     <p>
         J'ai
         {% if stats|length < 5 %} 

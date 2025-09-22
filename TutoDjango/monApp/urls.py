@@ -38,4 +38,7 @@ urlpatterns = [
     path("produit/",views.ProduitCreateView.as_view(), name="crt-prdt"),
     path("produit/<pk>/update/",views.ProduitUpdateView.as_view(), name="prdt-chng"),
     path("produit/<pk>/delete/",views.ProduitDeleteView.as_view(), name="dlt-prdt"),
+    path("categorie/",views.CategorieCreateView.as_view(), name="crt-cat"),
+    path("statut/",views.StatutCreateView.as_view(), name="crt-stat"),
+    path("rayon/",views.RayonCreateView.as_view(), name="crt-rayon"),
 ]

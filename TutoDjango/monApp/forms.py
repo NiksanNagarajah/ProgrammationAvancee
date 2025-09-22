@@ -12,4 +12,17 @@ class ProduitForm(forms.ModelForm):
         fields = '__all__'
         # exclude = ('categorie', 'status')
 
+class CategorieForm(forms.ModelForm):
+    class Meta:
+        model = Categorie
+        fields = '__all__'
 
+class StatutForm(forms.ModelForm):
+    class Meta:
+        model = Statut
+        fields = '__all__'
+
+class RayonForm(forms.ModelForm):
+    class Meta:
+        model = Rayon
+        fields = '__all__'

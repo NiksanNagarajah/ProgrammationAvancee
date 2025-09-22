@@ -23,6 +23,9 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <h1>Pour créer une nouvelle catégorie cliquer <a href="{% url 'crt-cat' %}">ici</a>.</h1>
+
     <p>
         J'ai
         {% if cats|length < 5 %} 
