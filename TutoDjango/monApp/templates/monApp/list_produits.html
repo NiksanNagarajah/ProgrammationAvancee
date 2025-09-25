@@ -17,17 +17,18 @@
             <th>Date fabrication</th>
             <th>Catégorie</th>
             <th>Statut</th>
-            <th colspan="2" style="text-align: center;">Action</th>
+            <th colspan="3" style="text-align: center;">Action</th>
         </thead>
         <tbody>
             {% for prdt in prdts %}
             <tr>
-                <td><a href="{% url 'dtl_prdt' prdt.refProd %}">{{ prdt.refProd }}</a></td>
+                <td>{{ prdt.refProd }}</td>
                 <td>{{ prdt.intituleProd | upper }}</td>
                 <td>{{ prdt.prixUnitaireProd }}</td>
                 <td>{{ prdt.dateFabProd }}</td>
                 <td>{{ prdt.categorie }}</td>
                 <td>{{ prdt.status }}</td>
+                <td><a href="{% url 'dtl_prdt' prdt.refProd %}">Détail</a></td>
                 <td><a href="{% url 'prdt-chng' prdt.refProd %}">Modifier</a></td>
                 <td><a href="{% url 'dlt-prdt' prdt.refProd %}">Supprimer</a></td>
             </tr>

@@ -18,6 +18,12 @@
         <li>Catégorie : {{ prdt.categorie }} </li>
         <li>Statut : {{ prdt.status }}</li>
     </ul>
+
+    <div class="actions" style="display: flex; justify-content: space-between; width: 50vh;">
+        <a href="{% url 'prdt-chng' prdt.refProd %}">Modifier</a>
+        <a href="{% url 'dlt-prdt' prdt.refProd %}">Supprimer</a>
+        <a href="{% url 'lst_prdts' %}">Retour</a>
+    </div>
 {% endblock %}
 
 
