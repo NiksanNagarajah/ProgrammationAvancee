@@ -13,12 +13,15 @@
         <thead>
             <th>Id</th>
             <th>Nom catégorie</th>
+            <th colspan="2" style="text-align: center;">Action</th>
         </thead>
         <tbody>
             {% for cat in cats %}
             <tr>
                 <td><a href="{% url 'dtl_cat' cat.idCat %}">{{ cat.idCat }}</a></td>
                 <td>{{ cat.nomCat }}</td>
+                <td><a href="{% url 'cat-chng' cat.idCat %}">Modifier</a></td>
+                <td><a href="{% url 'dlt-cat' cat.idCat %}">Supprimer</a></td>
             </tr>
             {% endfor %}
         </tbody>

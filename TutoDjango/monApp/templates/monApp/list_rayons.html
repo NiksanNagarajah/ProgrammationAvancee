@@ -13,12 +13,15 @@
         <thead>
             <th>Id</th>
             <th>Nom rayon</th>
+            <th colspan="2" style="text-align: center;">Action</th>
         </thead>
         <tbody>
             {% for ray in rayons %}
             <tr>
                 <td><a href="{% url 'dtl_rayon' ray.idRayon %}">{{ ray.idRayon }}</a></td>
                 <td>{{ ray.nomRayon }}</td>
+                <td><a href="{% url 'rayon-chng' ray.idRayon %}">Modifier</a></td>
+                <td><a href="{% url 'dlt-rayon' ray.idRayon %}">Supprimer</a></td>
             </tr>
             {% endfor %}
         </tbody>

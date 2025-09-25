@@ -13,12 +13,15 @@
         <thead>
             <th>Id</th>
             <th>Nom statut</th>
+            <th colspan="2" style="text-align: center;">Action</th>
         </thead>
         <tbody>
             {% for stat in stats %}
             <tr>
                 <td><a href="{% url 'dtl_stat' stat.idStatus %}">{{ stat.idStatus }}</a></td>
                 <td>{{ stat.libelleStatus }} </td>
+                <td><a href="{% url 'stat-chng' stat.idStatus %}">Modifier</a></td>
+                <td><a href="{% url 'dlt-stat' stat.idStatus %}">Supprimer</a></td>
             </tr>
             {% endfor %}
         </tbody>

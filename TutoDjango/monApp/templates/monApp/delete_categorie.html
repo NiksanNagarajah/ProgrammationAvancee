@@ -1,0 +1,12 @@
+{% extends 'monApp/base.html' %}
+
+{% block title %}Supprimer une catégorie{% endblock title %}
+
+{% block contenu %}
+    <h1> Suppression d'un catégorie </h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Etes-vous sûr de vouloir supprimer la catégorie {{ object.nomCat }} ?</p>
+        <button type="submit" class="btn btn-success mt-2">Confirmer</button>
+    </form>
+{% endblock %}
