@@ -1,18 +1,4 @@
-h1 {
-    color: red
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-}
-
-main {
-    flex: 1;
-}
-
-.actions {
-    display: flex; 
-    justify-content: space-between; 
-    width: 50vh;
+.container {
+    margin: auto;
+    max-width: max-content;
 }
