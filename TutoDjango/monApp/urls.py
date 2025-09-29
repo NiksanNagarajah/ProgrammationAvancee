@@ -47,4 +47,5 @@ urlpatterns = [
     path("categorie/<pk>/delete/",views.CategorieDeleteView.as_view(), name="dlt-cat"),
     path("statut/<pk>/delete/",views.StatutDeleteView.as_view(), name="dlt-stat"),
     path("rayon/<pk>/delete/",views.RayonDeleteView.as_view(), name="dlt-rayon"),
+    path('rayon/<pk>/cntnr', views.ContenirCreateView.as_view(), name='cntnr-crt'),
 ]

@@ -1,0 +1,13 @@
+{% extends 'monApp/base.html' %}
+
+{% block title %}Créer un contenir{% endblock title %}
+
+{% block contenu %}
+    <h1> Création d'un nouveau contenir </h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success mt-2">Créer</button>
+        <a href="{% url 'dtl_rayon' rayon.idRayon %}" class="btn btn-info">Retour</a>
+    </form>
+{% endblock %}

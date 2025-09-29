@@ -347,4 +347,26 @@ class RayonDeleteView(DeleteView):
     template_name = "monApp/delete_rayon.html"
     success_url = reverse_lazy('lst_rayons')  
 
+@method_decorator(login_required, name='dispatch')
+class ContenirCreateView(CreateView):
+    model = Contenir
+    form_class=ContenirForm
+    template_name = "monApp/create_contenir.html"
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        pk = self.kwargs['pk']
+        rayon = Rayon.objects.get(pk=pk)
+        print(rayon.idRayon)
+        contenir = form.save(commit=False)
+        contenir.rayon_id = rayon.idRayon
+        contenir.save()
+        return redirect('dtl_rayon', rayon.idRayon)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs['pk']
+        rayon = Rayon.objects.get(pk=pk)
+        context['rayon'] = rayon 
+        return context
+
 
