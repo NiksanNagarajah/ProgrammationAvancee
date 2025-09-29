@@ -6,11 +6,13 @@ from django.views.generic import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.views import *
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.core.mail import send_mail
 from django.forms.models import BaseModelForm
 from django.urls import reverse_lazy 
 from django.db.models import Count, Prefetch
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 # Create your views here.
@@ -230,6 +232,7 @@ class DisconnectView(TemplateView):
         logout(request)
         return render(request, self.template_name)
 
+@method_decorator(login_required, name='dispatch')
 class ProduitCreateView(CreateView):
     model = Produit
     form_class=ProduitForm
@@ -239,6 +242,7 @@ class ProduitCreateView(CreateView):
         prdt = form.save()
         return redirect('dtl_prdt', prdt.refProd)
 
+@method_decorator(login_required, name='dispatch')
 class ProduitUpdateView(UpdateView):
     model = Produit
     form_class=ProduitForm
@@ -248,12 +252,14 @@ class ProduitUpdateView(UpdateView):
         prdt = form.save()
         return redirect('dtl_prdt', prdt.refProd)
 
+@method_decorator(login_required, name='dispatch')
 class ProduitDeleteView(DeleteView):
     model = Produit
     template_name = "monApp/delete_produit.html"
     success_url = reverse_lazy('lst_prdts')
 
 
+@method_decorator(login_required, name='dispatch')
 class CategorieCreateView(CreateView):
     model = Categorie
     form_class=CategorieForm
@@ -263,6 +269,7 @@ class CategorieCreateView(CreateView):
         cat = form.save()
         return redirect('dtl_cat', cat.idCat)
 
+@method_decorator(login_required, name='dispatch')
 class CategorieUpdateView(UpdateView):
     model = Categorie
     form_class=CategorieForm
@@ -272,11 +279,13 @@ class CategorieUpdateView(UpdateView):
         cat = form.save()
         return redirect('dtl_cat', cat.idCat)
 
+@method_decorator(login_required, name='dispatch')
 class CategorieDeleteView(DeleteView):
     model = Categorie
     template_name = "monApp/delete_categorie.html"
     success_url = reverse_lazy('lst_cats')    
 
+@method_decorator(login_required, name='dispatch')
 class StatutCreateView(CreateView):
     model = Statut
     form_class=StatutForm
@@ -286,6 +295,7 @@ class StatutCreateView(CreateView):
         stat = form.save()
         return redirect('dtl_stat', stat.idStatus)
 
+@method_decorator(login_required, name='dispatch')
 class StatutUpdateView(UpdateView):
     model = Statut
     form_class=StatutForm
@@ -295,12 +305,13 @@ class StatutUpdateView(UpdateView):
         stat = form.save()
         return redirect('dtl_stat', stat.idStatus)
 
+@method_decorator(login_required, name='dispatch')
 class StatutDeleteView(DeleteView):
     model = Statut
     template_name = "monApp/delete_statut.html"
     success_url = reverse_lazy('lst_stats')  
 
-
+@method_decorator(login_required, name='dispatch')
 class RayonCreateView(CreateView):
     model = Rayon
     form_class=RayonForm
@@ -310,6 +321,7 @@ class RayonCreateView(CreateView):
         ray = form.save()
         return redirect('dtl_rayon', ray.idRayon)
 
+@method_decorator(login_required, name='dispatch')
 class RayonUpdateView(UpdateView):
     model = Rayon
     form_class=RayonForm
@@ -319,6 +331,7 @@ class RayonUpdateView(UpdateView):
         rayon = form.save()
         return redirect('dtl_rayon', rayon.idRayon)
 
+@method_decorator(login_required, name='dispatch')
 class RayonDeleteView(DeleteView):
     model = Rayon
     template_name = "monApp/delete_rayon.html"
