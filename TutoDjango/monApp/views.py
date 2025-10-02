@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
 from .models import *
 from .forms import *
@@ -369,4 +369,34 @@ class ContenirCreateView(CreateView):
         context['rayon'] = rayon 
         return context
 
+
+@method_decorator(login_required, name='dispatch')
+class UpdateContenirView(UpdateView):
+    model = Contenir
+    form_class=ContenirForm
+    template_name = "monApp/update_contenir.html"
+    
+    def get_object(self, queryset=None):
+        return get_object_or_404(Contenir, rayon_id=self.kwargs['pkr'], produit_id=self.kwargs['pkp'])
+    
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        contenir = form.save(commit=False)
+        if contenir.Qte <= 0:
+            rayon_id = contenir.rayon_id
+            contenir.delete()
+            return redirect('dtl_rayon', rayon_id)
+        else:
+            contenir.save()
+            return redirect('dtl_rayon', contenir.rayon_id)
+
+@method_decorator(login_required, name='dispatch')
+class DeleteContenirView(DeleteView):
+    model = Contenir
+    template_name = "monApp/delete_contenir.html"
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(Contenir, rayon_id=self.kwargs["pkr"], produit_id=self.kwargs["pkp"])
+    
+    def get_success_url(self):
+        return reverse_lazy("dtl_rayon", kwargs={"pk": self.object.rayon_id})
 
