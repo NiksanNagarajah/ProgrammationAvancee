@@ -356,10 +356,22 @@ class ContenirCreateView(CreateView):
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         pk = self.kwargs['pk']
         rayon = Rayon.objects.get(pk=pk)
-        print(rayon.idRayon)
         contenir = form.save(commit=False)
         contenir.rayon_id = rayon.idRayon
-        contenir.save()
+        qte = contenir.Qte
+
+        if qte == 0:
+            return redirect('dtl_rayon', rayon.idRayon)
+
+        contenir_obj, created = Contenir.objects.get_or_create(
+            rayon_id=rayon.idRayon,
+            produit_id=contenir.produit_id,
+            defaults={'Qte': contenir.Qte}
+        )
+
+        if not created and qte != 0:
+            contenir_obj.Qte += qte
+            contenir_obj.save()
         return redirect('dtl_rayon', rayon.idRayon)
     
     def get_context_data(self, **kwargs):
