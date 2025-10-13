@@ -1,7 +1,7 @@
 from rest_framework import generics, viewsets
 from rest_framework.pagination import PageNumberPagination
 from monApp.models import Categorie, Produit, Statut, Rayon, Contenir
-from .serializers import CategorieSerializer, ProduitSerializer, StatutSerializer, RayonSerializer, ContenirSerializer
+from .serializers import CategorieSerializer, ProduitSerializer, StatutSerializer, RayonSerializer, ContenirSerializer, CategorieSerializerList
 from datetime import datetime
 
 class SmallResultsSetPagination(PageNumberPagination):
@@ -11,8 +11,19 @@ class SmallResultsSetPagination(PageNumberPagination):
 
 class CategorieViewSet(viewsets.ModelViewSet):
     pagination_class = SmallResultsSetPagination
-    queryset = Categorie.objects.all().prefetch_related('produits_categorie')
-    serializer_class = CategorieSerializer
+    # queryset = Categorie.objects.all().prefetch_related('produits_categorie')
+    serializer_class = CategorieSerializerList
+    detail_serializer_class = CategorieSerializer
+
+    def get_queryset(self):
+        return Categorie.objects.all()
+    
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            #on utilise le serializer qui donne tous les détails : catégorie + produits
+            return self.detail_serializer_class
+        #on utilise le serializer qui donne les catégorie sans les produits
+        return super().get_serializer_class()
 
 class ProduitViewSet(viewsets.ModelViewSet):
     pagination_class = None

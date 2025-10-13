@@ -7,6 +7,13 @@ class ProduitSerializer(serializers.ModelSerializer):
         model = Produit
         fields = '__all__'
 
+class CategorieSerializerList(serializers.ModelSerializer):
+    produits_categorie = ProduitSerializer(many=True)
+    class Meta:
+        model = Categorie
+        # fields = '__all__'
+        fields = ["idCat", "nomCat","produits_categorie"]
+
 class CategorieSerializer(serializers.ModelSerializer):
     produits_categorie = serializers.SerializerMethodField()
     class Meta:
