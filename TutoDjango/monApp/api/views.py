@@ -4,20 +4,20 @@ from .serializers import CategorieSerializer, ProduitSerializer, StatutSerialize
 from datetime import datetime
 
 class CategorieViewSet(viewsets.ModelViewSet):
-    queryset = Categorie.objects.all()
+    queryset = Categorie.objects.all().prefetch_related('produits_categorie')
     serializer_class = CategorieSerializer
 
 class ProduitViewSet(viewsets.ModelViewSet):
     queryset = Produit.objects.all()
     serializer_class = ProduitSerializer
 
-    # def get_queryset(self):
-    #     queryset = Produit.objects.all()
-    #     datefilter = self.request.GET.get('datefilter')
-    #     if datefilter is not None:
-    #         datefilter=datetime.strptime(datefilter, "%d/%m/%Y")
-    #         queryset = queryset.filter(dateFabProd__gt=datefilter)
-    #     return queryset
+    def get_queryset(self):
+        queryset = Produit.objects.all()
+        datefilter = self.request.GET.get('datefilter')
+        if datefilter is not None:
+            datefilter=datetime.strptime(datefilter, "%d/%m/%Y")
+            queryset = queryset.filter(dateFabProd__gt=datefilter)
+        return queryset
 
 class StatutViewSet(viewsets.ModelViewSet):
     queryset = Statut.objects.all()
