@@ -1,15 +1,16 @@
 from monApp.api import views
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import CategorieViewSet, ProduitViewSet, StatutViewSet, RayonViewSet, ContenirViewSet
+
+router = DefaultRouter()
+router.register(r'categories', CategorieViewSet, basename='categorie')
+router.register(r'produits', ProduitViewSet, basename='produits')
+router.register(r'status', StatutViewSet, basename='status')
+router.register(r'rayons', RayonViewSet, basename='rayons')
+router.register(r'contenir', ContenirViewSet, basename='contenir')
 
 urlpatterns = [
-    path('categories/',views.CategorieAPIView.as_view(),name="api-lst-ctgrs"),
-    path('produits/',views.ProduitAPIView.as_view(),name="api-lst-prdts"),
-    path('status/',views.StatutAPIView.as_view(),name="api-lst-stats"),
-    path('rayons/',views.RayonAPIView.as_view(),name="api-lst-ryns"),
-    path('contenir/',views.ContenirAPIView.as_view(),name="api-lst-cntrs"),
-
-    path('categorie/<pk>/',views.CategorieDetailAPIView.as_view(),name="api-dtl-ctgr"),
-    path('produit/<pk>/',views.ProduitDetailAPIView.as_view(),name="api-dtl-prdt"),
-    path('statut/<pk>/',views.StatutDetailAPIView.as_view(),name="api-dtl-stat"),
-    path('rayon/<pk>/',views.RayonDetailAPIView.as_view(),name="api-dtl-ryn"),
+    path('', include(router.urls)),
 ]
+

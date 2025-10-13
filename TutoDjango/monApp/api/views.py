@@ -1,41 +1,24 @@
-from rest_framework import generics
+from rest_framework import generics, viewsets
 from monApp.models import Categorie, Produit, Statut, Rayon, Contenir
 from .serializers import CategorieSerializer, ProduitSerializer, StatutSerializer, RayonSerializer, ContenirSerializer
 
-class CategorieAPIView(generics.ListCreateAPIView):
+class CategorieViewSet(viewsets.ModelViewSet):
     queryset = Categorie.objects.all()
     serializer_class = CategorieSerializer
 
-class ProduitAPIView(generics.ListCreateAPIView):
+class ProduitViewSet(viewsets.ModelViewSet):
     queryset = Produit.objects.all()
     serializer_class = ProduitSerializer
 
-class StatutAPIView(generics.ListCreateAPIView):
+class StatutViewSet(viewsets.ModelViewSet):
     queryset = Statut.objects.all()
     serializer_class = StatutSerializer
 
-class RayonAPIView(generics.ListCreateAPIView):
+class RayonViewSet(viewsets.ModelViewSet):
     queryset = Rayon.objects.all()
     serializer_class = RayonSerializer
 
-class ContenirAPIView(generics.ListCreateAPIView):
+class ContenirViewSet(viewsets.ModelViewSet):
     queryset = Contenir.objects.all()
     serializer_class = ContenirSerializer
-
-
-class CategorieDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Categorie.objects.all()
-    serializer_class = CategorieSerializer
-
-class ProduitDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Produit.objects.all()
-    serializer_class = ProduitSerializer
-
-class StatutDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Statut.objects.all()
-    serializer_class = StatutSerializer
-
-class RayonDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Rayon.objects.all()
-    serializer_class = RayonSerializer
 
