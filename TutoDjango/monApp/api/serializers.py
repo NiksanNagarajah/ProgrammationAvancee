@@ -11,8 +11,7 @@ class CategorieSerializerList(serializers.ModelSerializer):
     produits_categorie = ProduitSerializer(many=True)
     class Meta:
         model = Categorie
-        # fields = '__all__'
-        fields = ["idCat", "nomCat","produits_categorie"]
+        fields = '__all__'
 
 class CategorieSerializer(serializers.ModelSerializer):
     produits_categorie = serializers.SerializerMethodField()
@@ -44,3 +43,10 @@ class ContenirSerializer(serializers.ModelSerializer):
         model = Contenir
         fields = '__all__'
 
+class MultipleSerializerMixin:
+    detail_serializer_class = None
+
+    def get_serializer_class(self):
+        if self.action == 'retrieve' and self.detail_serializer_class is not None:
+            return self.detail_serializer_class
+        return super().get_serializer_class()
