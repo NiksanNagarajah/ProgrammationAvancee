@@ -14,7 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -50,4 +50,5 @@ urlpatterns = [
     path('rayon/<pk>/cntnr/', views.ContenirCreateView.as_view(), name='cntnr-crt'),
     path('rayon/<pkr>/cntnr/<pkp>/update/', views.UpdateContenirView.as_view(), name='cntnr-chng'),
     path('rayon/<pkr>/cntnr/<pkp>/delete/', views.DeleteContenirView.as_view(), name='cntnr-dlt'),
+    path("api/", include("monApp.api.urls")), # routes API regroupées
 ]

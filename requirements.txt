@@ -3,6 +3,7 @@ coverage==7.10.7
 Django==5.2.5
 django-debug-toolbar==6.0.0
 django-extensions==4.1
+djangorestframework==3.16.1
 pydotplus==2.0.2
 pyparsing==3.2.5
 sqlparse==0.5.3
