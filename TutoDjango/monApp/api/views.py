@@ -2,6 +2,8 @@ from rest_framework import generics, viewsets
 from rest_framework.pagination import PageNumberPagination
 from monApp.models import Categorie, Produit, Statut, Rayon, Contenir
 from .serializers import CategorieSerializer, ProduitSerializer, StatutSerializer, RayonSerializer, ContenirSerializer, CategorieSerializerList, MultipleSerializerMixin
+from rest_framework.permissions import IsAuthenticated
+from .permissions import IsAdminAuthenticated
 from datetime import datetime
 
 class SmallResultsSetPagination(PageNumberPagination):
@@ -14,6 +16,8 @@ class CategorieViewSet(MultipleSerializerMixin, viewsets.ModelViewSet):
     # queryset = Categorie.objects.all().prefetch_related('produits_categorie')
     serializer_class = CategorieSerializerList
     detail_serializer_class = CategorieSerializer
+    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdminAuthenticated]
 
     def get_queryset(self):
         return Categorie.objects.all()
