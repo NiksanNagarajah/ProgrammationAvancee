@@ -1,0 +1,913 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /monApp/api/categories/:
+    get:
+      operationId: listCategorieSerializerLists
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CategorieList'
+          description: ''
+      tags:
+      - monApp
+    post:
+      operationId: createCategorieSerializerList
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategorieList'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CategorieList'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CategorieList'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategorieList'
+          description: ''
+      tags:
+      - monApp
+  /monApp/api/categories/{id}/:
+    get:
+      operationId: retrieveCategorie
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Categorie'
+          description: ''
+      tags:
+      - monApp
+    put:
+      operationId: updateCategorieSerializerList
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategorieList'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CategorieList'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CategorieList'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategorieList'
+          description: ''
+      tags:
+      - monApp
+    patch:
+      operationId: partialUpdateCategorieSerializerList
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategorieList'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CategorieList'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CategorieList'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategorieList'
+          description: ''
+      tags:
+      - monApp
+    delete:
+      operationId: destroyCategorieSerializerList
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - monApp
+  /monApp/api/produits/:
+    get:
+      operationId: listProduits
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Produit'
+          description: ''
+      tags:
+      - monApp
+    post:
+      operationId: createProduit
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produit'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Produit'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Produit'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produit'
+          description: ''
+      tags:
+      - monApp
+  /monApp/api/produits/{refProd}/:
+    get:
+      operationId: retrieveProduit
+      description: ''
+      parameters:
+      - name: refProd
+        in: path
+        required: true
+        description: A unique integer value identifying this produit.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produit'
+          description: ''
+      tags:
+      - monApp
+    put:
+      operationId: updateProduit
+      description: ''
+      parameters:
+      - name: refProd
+        in: path
+        required: true
+        description: A unique integer value identifying this produit.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produit'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Produit'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Produit'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produit'
+          description: ''
+      tags:
+      - monApp
+    patch:
+      operationId: partialUpdateProduit
+      description: ''
+      parameters:
+      - name: refProd
+        in: path
+        required: true
+        description: A unique integer value identifying this produit.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produit'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Produit'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Produit'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produit'
+          description: ''
+      tags:
+      - monApp
+    delete:
+      operationId: destroyProduit
+      description: ''
+      parameters:
+      - name: refProd
+        in: path
+        required: true
+        description: A unique integer value identifying this produit.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - monApp
+  /monApp/api/status/:
+    get:
+      operationId: listStatuts
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Statut'
+          description: ''
+      tags:
+      - monApp
+    post:
+      operationId: createStatut
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Statut'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Statut'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Statut'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Statut'
+          description: ''
+      tags:
+      - monApp
+  /monApp/api/status/{idStatus}/:
+    get:
+      operationId: retrieveStatut
+      description: ''
+      parameters:
+      - name: idStatus
+        in: path
+        required: true
+        description: A unique integer value identifying this statut.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Statut'
+          description: ''
+      tags:
+      - monApp
+    put:
+      operationId: updateStatut
+      description: ''
+      parameters:
+      - name: idStatus
+        in: path
+        required: true
+        description: A unique integer value identifying this statut.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Statut'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Statut'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Statut'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Statut'
+          description: ''
+      tags:
+      - monApp
+    patch:
+      operationId: partialUpdateStatut
+      description: ''
+      parameters:
+      - name: idStatus
+        in: path
+        required: true
+        description: A unique integer value identifying this statut.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Statut'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Statut'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Statut'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Statut'
+          description: ''
+      tags:
+      - monApp
+    delete:
+      operationId: destroyStatut
+      description: ''
+      parameters:
+      - name: idStatus
+        in: path
+        required: true
+        description: A unique integer value identifying this statut.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - monApp
+  /monApp/api/rayons/:
+    get:
+      operationId: listRayons
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Rayon'
+          description: ''
+      tags:
+      - monApp
+    post:
+      operationId: createRayon
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Rayon'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Rayon'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Rayon'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rayon'
+          description: ''
+      tags:
+      - monApp
+  /monApp/api/rayons/{idRayon}/:
+    get:
+      operationId: retrieveRayon
+      description: ''
+      parameters:
+      - name: idRayon
+        in: path
+        required: true
+        description: A unique integer value identifying this rayon.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rayon'
+          description: ''
+      tags:
+      - monApp
+    put:
+      operationId: updateRayon
+      description: ''
+      parameters:
+      - name: idRayon
+        in: path
+        required: true
+        description: A unique integer value identifying this rayon.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Rayon'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Rayon'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Rayon'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rayon'
+          description: ''
+      tags:
+      - monApp
+    patch:
+      operationId: partialUpdateRayon
+      description: ''
+      parameters:
+      - name: idRayon
+        in: path
+        required: true
+        description: A unique integer value identifying this rayon.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Rayon'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Rayon'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Rayon'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rayon'
+          description: ''
+      tags:
+      - monApp
+    delete:
+      operationId: destroyRayon
+      description: ''
+      parameters:
+      - name: idRayon
+        in: path
+        required: true
+        description: A unique integer value identifying this rayon.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - monApp
+  /monApp/api/contenir/:
+    get:
+      operationId: listContenirs
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Contenir'
+          description: ''
+      tags:
+      - monApp
+    post:
+      operationId: createContenir
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contenir'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Contenir'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Contenir'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contenir'
+          description: ''
+      tags:
+      - monApp
+  /monApp/api/contenir/{id}/:
+    get:
+      operationId: retrieveContenir
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this contenir.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contenir'
+          description: ''
+      tags:
+      - monApp
+    put:
+      operationId: updateContenir
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this contenir.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contenir'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Contenir'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Contenir'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contenir'
+          description: ''
+      tags:
+      - monApp
+    patch:
+      operationId: partialUpdateContenir
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this contenir.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contenir'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Contenir'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Contenir'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contenir'
+          description: ''
+      tags:
+      - monApp
+    delete:
+      operationId: destroyContenir
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this contenir.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - monApp
+  /monApp/api/token/:
+    post:
+      operationId: createTokenObtainPair
+      description: 'Takes a set of user credentials and returns an access and refresh
+        JSON web
+
+        token pair to prove the authentication of those credentials.'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenObtainPair'
+          description: ''
+      tags:
+      - monApp
+  /monApp/api/token/refresh/:
+    post:
+      operationId: createTokenRefresh
+      description: 'Takes a refresh type JSON web token and returns an access type
+        JSON web
+
+        token if the refresh token is valid.'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+      tags:
+      - monApp
+components:
+  schemas:
+    CategorieList:
+      type: object
+      properties:
+        idCat:
+          type: integer
+          readOnly: true
+        produits_categorie:
+          type: array
+          items:
+            type: object
+            properties:
+              refProd:
+                type: integer
+                readOnly: true
+              intituleProd:
+                type: string
+                maxLength: 200
+              prixUnitaireProd:
+                type: string
+                format: decimal
+                multipleOf: 0.01
+                maximum: 100000000
+                minimum: -100000000
+              dateFabProd:
+                type: string
+                format: date
+              categorie:
+                type: integer
+                nullable: true
+              status:
+                type: integer
+                nullable: true
+            required:
+            - intituleProd
+            - prixUnitaireProd
+        nomCat:
+          type: string
+          maxLength: 100
+      required:
+      - produits_categorie
+      - nomCat
+    Categorie:
+      type: object
+      properties:
+        idCat:
+          type: integer
+          readOnly: true
+        nomCat:
+          type: string
+          maxLength: 100
+        produits_categorie:
+          type: string
+          readOnly: true
+      required:
+      - nomCat
+    Produit:
+      type: object
+      properties:
+        refProd:
+          type: integer
+          readOnly: true
+        intituleProd:
+          type: string
+          maxLength: 200
+        prixUnitaireProd:
+          type: string
+          format: decimal
+          multipleOf: 0.01
+          maximum: 100000000
+          minimum: -100000000
+        dateFabProd:
+          type: string
+          format: date
+        categorie:
+          type: integer
+          nullable: true
+        status:
+          type: integer
+          nullable: true
+      required:
+      - intituleProd
+      - prixUnitaireProd
+    Statut:
+      type: object
+      properties:
+        idStatus:
+          type: integer
+          readOnly: true
+        libelleStatus:
+          type: string
+          maxLength: 100
+      required:
+      - libelleStatus
+    Rayon:
+      type: object
+      properties:
+        idRayon:
+          type: integer
+          readOnly: true
+        nomRayon:
+          type: string
+          maxLength: 100
+      required:
+      - nomRayon
+    Contenir:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        Qte:
+          type: integer
+          maximum: 9223372036854775807
+          format: int64
+          minimum: 0
+        produit:
+          type: integer
+        rayon:
+          type: integer
+      required:
+      - produit
+      - rayon
+    TokenObtainPair:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+      required:
+      - username
+      - password
+    TokenRefresh:
+      type: object
+      properties:
+        refresh:
+          type: string
+        access:
+          type: string
+          readOnly: true
+      required:
+      - refresh
