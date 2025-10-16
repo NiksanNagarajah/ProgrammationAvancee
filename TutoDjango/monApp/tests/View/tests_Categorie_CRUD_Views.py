@@ -3,6 +3,22 @@ from django.urls import reverse, resolve
 from monApp.models import Categorie
 from django.contrib.auth.models import User
 
+class CategorieListViewTest(TestCase):
+    def setUp(self):
+        self.cat1 = Categorie.objects.create(nomCat='Category 1')
+        self.cat2 = Categorie.objects.create(nomCat='Category 2')
+
+    def test_categorie_list_view_get(self):
+        response = self.client.get(reverse('lst_cats'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'monApp/list_categories.html')
+        self.assertEqual(len(response.context['cats']), 2)
+
+    def test_categorie_list_view_search(self):
+        response = self.client.get(reverse('lst_cats') + '?search=Category 1')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.context['cats']), 1)
+
 class CategorieCreateViewTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username='testuser', password='secret')
